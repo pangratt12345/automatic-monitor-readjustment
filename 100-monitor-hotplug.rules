@@ -1,0 +1,10 @@
+# this file needs to be put in this folder /etc/udev/rules.d/
+#ACTION=="change", SUBSYSTEM=="drm", ENV{HOTPLUG}=="1", RUN+="/root/hotplug.sh"
+
+#KERNEL=="card[0-9]*", SUBSYSTEM=="drm", ACTION=="change", ENV{DISPLAY}=":0", ENV{HOTPLUG}=="1", RUN+="/home/user/Desktop/drm_monitor_reconfiguration.sh"
+
+# these settings are correct when using Gnome with GDM, but these settings are probably overriden by variables in monitor readjustment script
+#KERNEL=="card[0-9]*", SUBSYSTEM=="drm", ACTION=="change", ENV{DISPLAY}=":1.0", ENV{XAUTHORITY}+="/run/user/1000/gdm/Xauthority", ENV{HOTPLUG}+="1", RUN+="/home/user/Desktop/automatic_monitor_reconfiguration.sh" 
+
+# these settings are correct when using KDE with sddm, but these settings are probably overriden by variables in monitor readjustment script
+KERNEL=="card[0-9]*", SUBSYSTEM=="drm", ACTION=="change", ENV{DISPLAY}=":0.0", ENV{XAUTHORITY}+="/var/run/sddm/{efb5330-00289-1f4a-8b4e-8c8ad7657b}", ENV{HOTPLUG}+="1", RUN+="/home/user/Desktop/automatic_monitor_reconfiguration.sh"
